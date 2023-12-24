@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGI Chatbot</title>
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">-->
+
+</head>
+<body>
+    <div class="container">
+        <h1>ARTIFICIAL GENERATIVE INTELLIGENCE <br> Chatbot</h1>
+        <div class="chatbox">
+            <div class="chatbox__messages" id="chat-messages">
+                <!-- Chat messages will be dynamically added here -->
+            </div>
+            <form id="chat-form">
+                <input type="text" id="user-input" placeholder="Type a message...">
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer">
+      <div class="waves">
+        <div class="wave" id="wave1"></div>
+        <div class="wave" id="wave2"></div>
+        <div class="wave" id="wave3"></div>
+        <div class="wave" id="wave4"></div>
+      </div>
+      <ul class="social-icon">
+        
+        <li class="social-icon__item"><a class="social-icon__link" href="https://www.linkedin.com/in/ashis-baidya/">
+            <ion-icon name="logo-linkedin"></ion-icon>
+          </a></li>
+        </ul>
+      
+      <p>©2023 Ashis Baidya ❤❤ | All Rights Reserved</p>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule="" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+   
+   
+        <style>
+            $primary: rgba(23, 190, 187, 1);
+            $secondary: rgba(240, 166, 202, 1);
+            /*$background: url('') center center fixed;*/
+            $font-color: #333;
+            
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            
+            body {
+              font-family: 'Arial', sans-serif;
+              background: url(https://www.workitdaily.com/media-library/artificial-intelligence-ai-technology-concept.jpg?id=34199573&width=1200&height=800&quality=85&coordinates=84%2C0%2C84%2C0) center center fixed;
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-attachment: fixed;
+            }
+            
+            .container {
+              background: rgba(43, 183, 226, 0.1);
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              flex-direction: column;
+              height: 98vh;
+              flex-wrap: nowrap;
+              width: 40%;
+            }
+            
+            h1 {
+              text-align: center;
+              display: flex;
+              height: 110px;
+              font-size: 30px;
+              width: 400px;
+              box-shadow: 0 0 12px rgba(0, 0, 0, 0.9);
+              border-radius: 12px;
+              margin-bottom: 1em;
+              color: cornflowerblue;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+            }
+            
+            .chatbox {
+              display: flex;
+              background: rgba(255, 255, 255, 0.05);
+              width: 400px;
+              border-radius: 8px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+              overflow: hidden;
+              flex-direction: column;
+              flex-wrap: nowrap;
+            }
+            
+            .chatbox__messages {
+              height: 300px;
+              overflow-y: auto;
+              padding: 1em;
+              background: rgba(255, 255, 255, 0.05);
+            }
+
+
+            
+            
+            .chatbox__messages .chatbox__messages__user-message,
+            .chatbox__messages .chatbox__messages__user-message--ind-message {
+              background: rgba(255, 255, 255, 0.2);
+              border-radius: 8px;
+              margin-bottom: 10px;
+              padding: 10px;
+              color: floralwhite;
+              word-wrap: break-word; /* Add this line */
+            }
+            
+            .chatbox__messages .chatbox__messages__user-message--ind-message {
+              text-align: right;
+            }
+            
+            .name {
+              margin-bottom: 5px;
+              font-weight: bold;
+            }
+            
+            .message {
+              margin: 0;
+            }
+            
+            #user-input {
+              width: 75%;
+              padding: 10px;
+              border: none;
+              border-top: 1px;
+              font-size: 16px;
+              background: rgba(255, 255, 255, 0.03);
+              
+            }
+            
+            #user-input:focus {
+              outline: none;
+            }
+            
+            #send-button {
+              width: 20%;
+              padding: 10px;
+              border: none;
+              background-color: $primary;
+              color: #fff;
+              cursor: pointer;
+              font-size: 16px;
+            }
+            
+            #send-button:hover {
+              background-color: darken($primary, 10%);
+            }
+            .footer {
+              margin-top: 5px;
+              position: relative;
+              width: 100%;
+              background: #3586ff;
+              min-height: 100px;
+              /* padding: 20px 50px; */
+              display: flex;
+              align-items: center;
+              flex-direction: column;
+            }
+
+            .social-icon,
+            .menu {
+              position: relative;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 10px 0;
+              flex-wrap: wrap;
+            }
+
+            .social-icon__item,
+            .menu__item {
+              list-style: none;
+            }
+
+            .social-icon__link {
+              font-size: 2rem;
+              color: #fff;
+              margin: 0 10px;
+              display: inline-block;
+              transition: 0.5s;
+            }
+            .social-icon__link:hover {
+              transform: translateY(-10px);
+            }
+
+            .menu__link {
+              font-size: 1.2rem;
+              color: #fff;
+              margin: 0 10px;
+              display: inline-block;
+              transition: 0.5s;
+              text-decoration: none;
+              opacity: 0.75;
+              font-weight: 300;
+            }
+
+            .menu__link:hover {
+              opacity: 1;
+            }
+
+            .footer p {
+              color: #fff;
+              margin: 15px 0 10px 0;
+              font-size: 1rem;
+              font-weight: 300;
+            }
+
+            .wave {
+              position: absolute;
+              top: -100px;
+              left: 0;
+              width: 100%;
+              height: 100px;
+              background: url("https://i.ibb.co/wQZVxxk/wave.png");
+              background-size: 1000px 100px;
+            }
+
+            .wave#wave1 {
+              z-index: 1000;
+              opacity: 1;
+              bottom: 0;
+              animation: animateWaves 4s linear infinite;
+            }
+
+            .wave#wave2 {
+              z-index: 999;
+              opacity: 0.5;
+              bottom: 10px;
+              animation: animate 4s linear infinite !important;
+            }
+
+            .wave#wave3 {
+              z-index: 1000;
+              opacity: 0.2;
+              bottom: 15px;
+              animation: animateWaves 3s linear infinite;
+            }
+
+            .wave#wave4 {
+              z-index: 999;
+              opacity: 0.7;
+              bottom: 20px;
+              animation: animate 3s linear infinite;
+            }
+
+            @keyframes animateWaves {
+              0% {
+                background-position-x: 1000px;
+              }
+              100% {
+                background-positon-x: 0px;
+              }
+            }
+
+            @keyframes animate {
+              0% {
+                background-position-x: -1000px;
+              }
+              100% {
+                background-positon-x: 0px;
+              }
+            }
+            
+            </style>
+        
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const chatForm = document.getElementById("chat-form");
+            const userInput = document.getElementById("user-input");
+            const chatMessages = document.getElementById("chat-messages");
+
+            chatForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+                const userMessage = userInput.value.trim();
+                if (userMessage !== "") {
+                    // Send user message to the server
+                    fetch(`/get?msg=${encodeURIComponent(userMessage)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Display user message
+                            appendMessage("You", userMessage, "user-message");
+
+                            // Display bot response
+                            appendMessage("Ashgen", data, "user-message--ind-message");
+                        })
+                        .catch(error => {
+                            console.error("Error fetching data:", error);
+                        });
+
+                    // Clear input field
+                    userInput.value = "";
+                }
+            });
+
+            function appendMessage(name, message, className) {
+                const messageContainer = document.createElement("div");
+                messageContainer.classList.add("chatbox__messages__" + className);
+
+                const nameElement = document.createElement("p");
+                nameElement.classList.add("name");
+                nameElement.textContent = name;
+
+                const messageElement = document.createElement("p");
+                messageElement.classList.add("message");
+                messageElement.textContent = message;
+
+                messageContainer.appendChild(nameElement);
+                messageContainer.appendChild(messageElement);
+                chatMessages.appendChild(messageContainer);
+
+                // Scroll to the bottom to show the latest message
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
+
+
